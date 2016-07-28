@@ -28,3 +28,17 @@ q3 = Question.create!(poll_id: 2, question_text: "what is a question?")
 q3 = Question.create!(poll_id: 4, question_text: "pepsi or coke?")
 q3 = Question.create!(poll_id: 5, question_text: "where is the treasure?")
 q3 = Question.create!(poll_id: 5, question_text: "do dead men tell tales?")
+
+# AnswerChoice.create!(question_id: 1, answer_text: "money")
+# entered through pry console during development
+ac1 = AnswerChoice.create!(question_id: 1, answer_text: "love")
+ac2 = AnswerChoice.create!(question_id: 5, answer_text: "sprite")
+ac2 = AnswerChoice.create!(question_id: 5, answer_text: "coke")
+ac2 = AnswerChoice.create!(question_id: 5, answer_text: "pepsi")
+ac2 = AnswerChoice.create!(question_id: 6, answer_text: "on treausre island, duh")
+
+# Response.create!(answer_choice_id: 1, user_id: 2)
+# entered through pry console during development
+r1 = Response.create!(answer_choice_id: 2, user_id: 3)
+r2 = Response.create!(answer_choice_id: 1, user_id: 4)
+r3 = Response.create!(answer_choice_id: 3, user_id: 2)

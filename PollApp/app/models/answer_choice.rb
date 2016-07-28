@@ -1,4 +1,6 @@
 class AnswerChoice < ActiveRecord::Base
+  validates :question_id, :answer_text, presence: true
+
   belongs_to :question,
     primary_key: :id,
     foreign_key: :question_id,
@@ -11,5 +13,5 @@ class AnswerChoice < ActiveRecord::Base
 
   has_many :respondents,
     through: :responses,
-    source: :respondent 
+    source: :respondent
 end
