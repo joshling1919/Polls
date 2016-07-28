@@ -1,4 +1,3 @@
-require "answer_choice"
 
 class Question < ActiveRecord::Base
   validates :poll_id, :question_text, presence: true
@@ -39,16 +38,10 @@ class Question < ActiveRecord::Base
 
   def results
 
-
-
     results = self
       .answer_choices
-      .select("answer_choices.answer_text, COUNT(*) AS response_count")
-      # .joins(<<-SQL).group("answer_choices.id")
-      #   LEFT OUTER JOIN responses
-      #     ON answer_choices.id = responses.answer_choice_id
-      #   SQL
-      .join("LEFT OUTER JOIN responses ON answer_choices.id = responses.answer_choice_id")
+      .select("answer_choices.answer_text, COUNT(responses.id) AS response_count")
+      .joins("LEFT OUTER JOIN responses ON answer_choices.id = responses.answer_choice_id")
       .group("answer_choices.id")
 
     count = {}
@@ -56,5 +49,6 @@ class Question < ActiveRecord::Base
       count[result] = result.response_count
     end
     count
+
   end
 end
