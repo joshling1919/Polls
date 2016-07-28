@@ -1,6 +1,12 @@
 class Response < ActiveRecord::Base
   validates :user_id, :answer_choice_id, presence: true
-  validate :not_duplicate_response
+  validate :not_duplicate_response, :author_cannot_respond
+
+  def author_cannot_respond
+    if self.question.poll.author == self.respondent
+      self.errors[:rigging] << "author cannot respond to their own poll"
+    end
+  end
 
   def not_duplicate_response
     if respondent_already_answered?
